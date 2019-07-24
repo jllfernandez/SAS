@@ -1,0 +1,343 @@
+<div class="container-fluid">
+  <div class="container-fluid" style="margin-top: 15px;width: 100% !important">
+    <fieldset class="col-12">
+      <div class="row">
+        <div class="col-5">
+          <jqxGrid
+            #Grid
+            [width]="'100%'"
+            [height]="'100%'"
+            [source]="dataAdapter"
+            [columns]="columns"
+            [columnsresize]="true"
+            [filterable]="true"
+            [sortable]="true"
+            [pageable]="true"
+            [localization]="localizationObject"
+            (onRowselect)="cellClick($event)"
+          >
+          </jqxGrid>
+        </div>
+        <div class="col-7">
+          <form [formGroup]="filtro" (ngSubmit)="accionAceptar()">
+            <fieldset>
+              <div class="row">
+                <div class=" input-group col-5">
+                  <div>
+                    <span class="input-group-text" id="basic-addon2" translate>Name</span>
+                  </div>
+                  <input
+                    #input1
+                    formControlName="nombre"
+                    type="text"
+                    class="form-control"
+                    id="nombre"
+                    aria-describedby="basic-addon2"
+                    [ngClass]="
+                      filtro.controls['nombre'].hasError('required') && this.modo != 'seleccion' ? 'is-invalid' : ''
+                    "
+                  />
+                </div>
+                <div class=" input-group col-7">
+                  <div>
+                    <span class="input-group-text" id="basic-addon2" translate>Description</span>
+                  </div>
+                  <input
+                    #input2
+                    formControlName="descripcion"
+                    type="text"
+                    class="form-control"
+                    id="descripcion"
+                    aria-describedby="basic-addon2"
+                    [ngClass]="
+                      filtro.controls['descripcion'].hasError('required') && this.modo != 'seleccion'
+                        ? 'is-invalid'
+                        : ''
+                    "
+                  />
+                  <input
+                    #input3
+                    formControlName="nivelPermisos"
+                    type="text"
+                    class="form-control"
+                    id="descripcion"
+                    aria-describedby="basic-addon2"
+                    [ngClass]="
+                      filtro.controls['descripcion'].hasError('required') && this.modo != 'seleccion'
+                        ? 'is-invalid'
+                        : ''
+                    "
+                    hidden
+                  />
+                </div>
+              </div>
+            </fieldset>
+          </form>
+          <fieldset>
+            <div class="container">
+              <ul class="list-group row">
+                <div class="row">
+                  <div class="col-6">
+                    <li class="list-group-item">
+                      <div class="input-group">
+                        <span class="input-group-addon"
+                          ><input
+                            #chk1
+                            type="checkbox"
+                            value="ALTA DE TARJETAS"
+                            name="chk1"
+                            id="chk1"
+                            aria-label=""
+                          /><span class="label_check">ALTA DE TARJETAS</span></span
+                        >
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="input-group">
+                        <span class="input-group-addon"
+                          ><input
+                            class="checkbox_permisos"
+                            #chk2
+                            type="checkbox"
+                            value="ALTA DE TARJETAS"
+                            name="chk2"
+                            id="chk2"
+                            aria-label=""
+                            (click)="clickchk2()"
+                          /><span class="label_check">MANTENIMIENTO DE ESTRUCTURAS</span></span
+                        >
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="input-group">
+                        <span class="input-group-addon"
+                          ><input
+                            #chk3
+                            type="checkbox"
+                            value="MANTENIM PERFILES CATEGORIAS"
+                            name="chk3"
+                            id="chk3"
+                            aria-label=""
+                          /><span class="label_check">MANTENIM PERFILES CATEGORIAS</span></span
+                        >
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="input-group">
+                        <span class="input-group-addon"
+                          ><input
+                            #chk4
+                            type="checkbox"
+                            value="HABILITACION DE ALERTAS"
+                            name="chk4"
+                            id="chk4"
+                            aria-label=""
+                          /><span class="label_check">HABILITACION DE ALERTAS</span></span
+                        >
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="input-group">
+                        <span class="input-group-addon"
+                          ><input
+                            #chk5
+                            type="checkbox"
+                            value="MANTENIMIENTO DE ALERTAS"
+                            name="chk5"
+                            id="chk5"
+                            aria-label=""
+                            (click)="clickchk5()"
+                          /><span class="label_check">MANTENIMIENTO DE ALERTAS</span></span
+                        >
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="input-group">
+                        <span class="input-group-addon"
+                          ><input
+                            #chk6
+                            type="checkbox"
+                            value="MANTENIMIENTO SEGURIDAD ZONAS"
+                            name="chk6"
+                            id="chk6"
+                            aria-label=""
+                          /><span class="label_check">MANTENIMIENTO SEGURIDAD ZONAS</span></span
+                        >
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="input-group">
+                        <span class="input-group-addon"
+                          ><input
+                            #chk7
+                            type="checkbox"
+                            value="CAPTURA DE TARJETAS"
+                            name="chk7"
+                            id="chk7"
+                            aria-label=""
+                            (click)="clickchk7()"
+                          /><span class="label_check">CAPTURA DE TARJETAS</span></span
+                        >
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="input-group">
+                        <span class="input-group-addon"
+                          ><input
+                            #chk8
+                            type="checkbox"
+                            value="VISTA DE SENSORES Y MONTAJES"
+                            name="chk8"
+                            id="chk8"
+                            aria-label=""
+                          /><span class="label_check">VISTA DE SENSORES Y MONTAJES</span></span
+                        >
+                      </div>
+                    </li>
+                  </div>
+                  <div class="col-6">
+                    <li class="list-group-item">
+                      <div class="input-group">
+                        <span class="input-group-addon"
+                          ><input
+                            #chk9
+                            type="checkbox"
+                            value="GESTION USUARIOS DEL SISTEMA"
+                            name="chk9"
+                            id="chk9"
+                            aria-label=""
+                            (click)="clickchk9()"
+                          /><span class="label_check">GESTION USUARIOS DEL SISTEMA</span></span
+                        >
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="input-group">
+                        <span class="input-group-addon"
+                          ><input
+                            #chk10
+                            type="checkbox"
+                            value="MANTENIMIENTO DE EMPRESAS"
+                            name="chk10"
+                            id="chk10"
+                            aria-label=""
+                          /><span class="label_check">MANTENIMIENTO DE EMPRESAS</span></span
+                        >
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="input-group">
+                        <span class="input-group-addon"
+                          ><input #chk11 type="checkbox" value="CONSOLA" name="chk11" id="chk11" aria-label="" /><span
+                            class="label_check"
+                            >CONSOLA</span
+                          ></span
+                        >
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="input-group">
+                        <span class="input-group-addon"
+                          ><input
+                            #chk12
+                            type="checkbox"
+                            value="EXPORTACION"
+                            name="chk12"
+                            id="chk12"
+                            aria-label=""
+                          /><span class="label_check">EXPORTACION</span></span
+                        >
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="input-group">
+                        <span class="input-group-addon"
+                          ><input
+                            #chk13
+                            type="checkbox"
+                            value="VER CAMARAS IP"
+                            name="chk13"
+                            id="chk13"
+                            aria-label=""
+                          /><span class="label_check">VER CAMARAS IP</span></span
+                        >
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="input-group">
+                        <span class="input-group-addon"
+                          ><input
+                            #chk14
+                            type="checkbox"
+                            value="ASIGNACION DE PERFILES"
+                            name="chk14"
+                            id="chk14"
+                            aria-label=""
+                          /><span class="label_check">ASIGNACION DE PERFILES</span></span
+                        >
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="input-group">
+                        <span class="input-group-addon"
+                          ><input
+                            #chk15
+                            type="checkbox"
+                            value="MOVER CAMARAS IP"
+                            name="chk15"
+                            id="chk15"
+                            aria-label=""
+                            (click)="clickchk15_16()"
+                          /><span class="label_check">MOVER CAMARAS IP</span></span
+                        >
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="input-group">
+                        <span class="input-group-addon"
+                          ><input
+                            #chk16
+                            type="checkbox"
+                            value="GRABAR CAMARAS IP"
+                            name="chk16"
+                            id="chk16"
+                            aria-label=""
+                            (click)="clickchk15_16()"
+                          /><span class="label_check">GRABAR CAMARAS IP</span></span
+                        >
+                      </div>
+                    </li>
+                  </div>
+                </div>
+              </ul>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset class="col-12">
+      <div class="row">
+        <div class="col-6" style="display: inline-block;">
+          <button type="button" class="btn btn-secondary" disabled="{{ botonNew }}" (click)="botonNuevo()">
+            NUEVO
+          </button>
+          <button type="button" class="btn btn-secondary" disabled="{{ botonModificar }}" (click)="botonEditar()">
+            EDITAR
+          </button>
+
+          <button type="button" class="btn btn-danger" disabled="{{ botonEliminar }}" (click)="botonBorrar()">
+            ELIMINAR
+          </button>
+        </div>
+        <div class="col-6" style="display: inline-block;text-align: right">
+          <button type="submit" class="btn btn-secondary" disabled="{{ disabled }}" (click)="accionAceptar()">
+            ACEPTAR
+          </button>
+          <button type="button" class="btn btn-secondary" disabled="{{ disabled }}" (click)="accionCancelar()">
+            CANCELAR
+          </button>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>

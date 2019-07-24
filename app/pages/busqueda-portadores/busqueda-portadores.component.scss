@@ -1,0 +1,15 @@
+legend {
+  @media screen and (max-width: 480px) {
+    font-size: 0.6rem;
+    width: unset;
+  }
+}
+
+.form-check-label {
+  @media screen and (max-width: 480px) {
+    font-size: 0.6rem;
+  }
+  @media screen and (min-width: 1200px) {
+    font-size: 1rem;
+  }
+}

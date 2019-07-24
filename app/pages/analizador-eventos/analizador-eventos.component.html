@@ -1,0 +1,164 @@
+<div class="container">
+  <div class="row">
+    <fieldset class="col-6">
+      <jqxGrid
+        #grid
+        [theme]="'custom'"
+        [width]="'100%'"
+        [source]="dataAdapter"
+        [columns]="columns"
+        [columnsresize]="true"
+        [filterable]="true"
+        [sortable]="true"
+        [pageable]="true"
+        [localization]="localizationObject"
+        (onRowselect)="cellClick($event)"
+      >
+      </jqxGrid>
+    </fieldset>
+
+    <!-- CAMPOS DEL FORM -->
+    <div class="col-6">
+      <div class="container-fluid" style="padding-top: 20px !important">
+        <form [formGroup]="formulario">
+          <div class="container_form">
+            <div class="form-group row">
+              <label for="nombre" class="col-sm-4 col-form-label" translate>Name</label>
+              <div class="col-sm-8">
+                <input #idanaliza formControlName="idanaliza" type="text" class="form-control" id="idanaliza" hidden />
+                <input
+                  #nombre
+                  formControlName="nombre"
+                  type="text"
+                  class="form-control"
+                  id="nombre"
+                  placeholder="Nombre del servidor"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="pc" class="col-4 col-form-label">PC</label>
+              <div class="col-8">
+                <input
+                  #pc
+                  formControlName="pc"
+                  type="text"
+                  class="form-control"
+                  id="pc"
+                  placeholder="IP del servidor"
+                />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="port1" class="col-4 col-form-label" translate>PortConsole</label>
+              <div class="col-8">
+                <input
+                  #portconsolas
+                  formControlName="portconsolas"
+                  type="text"
+                  class="form-control"
+                  id="port1"
+                  placeholder="Puerto de la consola"
+                />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="port2" class="col-4 col-form-label" translate>PortAdmin</label>
+              <div class="col-8">
+                <input
+                  #portadmin
+                  formControlName="portadmin"
+                  type="text"
+                  class="form-control"
+                  id="port2"
+                  placeholder="Puerto de administracion"
+                />
+              </div>
+            </div>
+            <fieldset>
+              <legend translate>Claves</legend>
+              <div class="form-group row">
+                <div class="col-4">
+                  <input
+                    #optManual
+                    class="form-check-input"
+                    type="radio"
+                    name="clave"
+                    id="claveManual"
+                    value="manual"
+                    (click)="changeManual()"
+                    checked
+                  />
+                  <label class="form-check-label" for="claveManual" translate>Manualkey</label>
+                </div>
+                <div class="col-8">
+                  <input
+                    #password
+                    formControlName="ce"
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    placeholder="Introduzca clave"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-4">
+                  <input
+                    #optAuto
+                    class="form-check-input"
+                    type="radio"
+                    name="clave"
+                    id="claveAuto"
+                    value="auto"
+                    (click)="changeAuto()"
+                  />
+                  <label class="form-check-label" for="claveAuto" translate>Autokey</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- BOTONERA DE CONTROL -->
+  <div class="row" style="padding-top: 10px !important">
+    <div class="col-6">
+      <button type="button" class="btn btn-secondary" disabled="{{ botonNuevo }}" (click)="nuevoAnalizador()" translate>
+        New
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        disabled="{{ botonModificar }}"
+        (click)="editarAnalizador()"
+        translate
+      >
+        Edit
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger"
+        disabled="{{ botonEliminar }}"
+        (click)="eliminarAnalizador()"
+        translate
+      >
+        Delete
+      </button>
+    </div>
+    <div class="col-6" style="text-align: right">
+      <button type="button" class="btn btn-secondary" disabled="{{ disabled }}" (click)="accionAceptar()" translate>
+        Accept
+      </button>
+      <button type="button" class="btn btn-secondary" disabled="{{ disabled }}" (click)="accionCancelar()" translate>
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>

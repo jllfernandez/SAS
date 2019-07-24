@@ -1,0 +1,230 @@
+<div class="container">
+  <div class="container-fluid" style="margin-top: 15px;width: 100% !important">
+    <div class="row">
+      <fieldset class="col-12">
+        <jqxGrid
+          #myGrid
+          [theme]="'custom'"
+          [width]="'100%'"
+          [source]="dataAdapter"
+          [columns]="columns"
+          [sortable]="true"
+          [pageable]="true"
+          [filterable]="true"
+          [localization]="localizationObject"
+          (onRowselect)="cellClick($event)"
+        >
+        </jqxGrid>
+      </fieldset>
+    </div>
+    <!-- PANEL CONTROL GRID -->
+    <fieldset>
+      <div class="row">
+        <div class="col-9">
+          <form [formGroup]="filtro" (ngSubmit)="accionAceptar()">
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <label for="txtLogin">Login</label>
+                <input
+                  formControlName="id"
+                  type="text"
+                  class="form-control"
+                  id="txtid"
+                  aria-describedby="basic-addon1"
+                  autocomplete="off"
+                  hidden
+                />
+                <input
+                  #txtLogin_
+                  formControlName="login"
+                  type="text"
+                  class="form-control"
+                  id="txtLogin"
+                  aria-describedby="basic-addon1"
+                  autocomplete="off"
+                  [ngClass]="
+                    filtro.controls['login'].hasError('required') && this.modo != 'seleccion' ? 'is-invalid' : ''
+                  "
+                />
+              </div>
+
+              <div class="form-group col-md-4">
+                <label for="txtNombre">Nombre</label>
+                <input
+                  #txtNombre_
+                  formControlName="nombre"
+                  type="text"
+                  class="form-control"
+                  id="txtNombre"
+                  aria-describedby="basic-addon2"
+                  [ngClass]="
+                    filtro.controls['nombre'].hasError('required') && this.modo != 'seleccion' ? 'is-invalid' : ''
+                  "
+                />
+              </div>
+
+              <div class="form-group col-md-5">
+                <label for="txtApellidos">Apellidos </label>
+                <input
+                  #txtApellidos_
+                  formControlName="apellidos"
+                  type="text"
+                  class="form-control"
+                  id="txtApellidos"
+                  aria-describedby="basic-addon2"
+                  [ngClass]="
+                    filtro.controls['apellidos'].hasError('required') && this.modo != 'seleccion' ? 'is-invalid' : ''
+                  "
+                />
+              </div>
+              <!--
+              <div class="form-group col-md-3" style="text-align: center">
+                <button type="button" class="btn btn-labeled btn-success"><span class="btn-label"><img src="../../../assets/icons/bicolor/48x/Irirs verificar 55_48px.png"></span>Verificar</button>
+              </div>
+  -->
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="txtDni">D.N.I.</label>
+                <input
+                  #txtDni_
+                  formControlName="dni"
+                  type="text"
+                  class="form-control"
+                  id="txtDni"
+                  aria-describedby="basic-addon1"
+                  [ngClass]="
+                    (filtro.controls['dni'].hasError('required') || filtro.controls['dni'].hasError('pattern')) &&
+                    this.modo != 'seleccion'
+                      ? 'is-invalid'
+                      : ''
+                  "
+                />
+              </div>
+
+              <div class="form-group col-md-4">
+                <label for="cmbPerfil">Perfil</label>
+                <jqxComboBox
+                  #ComboPerfil
+                  id="cmbPerfil"
+                  formControlName="perfil"
+                  [source]="perfilesUsuarios_dataAdapter"
+                  [displayMember]="'nombre'"
+                  [valueMember]="'nombre'"
+                  [theme]="'bootstrap'"
+                  [width]="'100%'"
+                  [height]="30"
+                ></jqxComboBox>
+              </div>
+
+              <div class="form-group col-md-4">
+                <label for="cmbEmpresa">Empresa</label>
+                <jqxComboBox
+                  #ComboEmpresa
+                  id="cmbEmpresa"
+                  formControlName="idEmpresa"
+                  [source]="empresas_dataAdapter"
+                  [displayMember]="'nombre'"
+                  [valueMember]="'id'"
+                  [theme]="'bootstrap'"
+                  [width]="'100%'"
+                  [height]="30"
+                ></jqxComboBox>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="row">
+                  <div class="col-2"><label for="txtPass">Contraseña</label></div>
+                </div>
+                <div class="row">
+                  <div class="col-3">
+                    <input
+                      #txtPass_
+                      formControlName="password"
+                      type="password"
+                      class="form-control"
+                      id="txtPass"
+                      aria-describedby="basic-addon"
+                      autocomplete="off"
+                      [ngClass]="
+                        filtro.controls['password'].hasError('required') && this.modo != 'seleccion' ? 'is-invalid' : ''
+                      "
+                    />
+                  </div>
+                  <div class="col-1">
+                    <button #btnPass class="btn-sm" type="button" (click)="cambiarPass()">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </div>
+
+                  <div class="form-check col-3">
+                    <input
+                      #chkUser_
+                      class="form-check-input"
+                      type="checkbox"
+                      class="form-check-input"
+                      name="chkUser"
+                      id="chkUser"
+                      (click)="limpiarSeleccion()"
+                    />
+                    <label class="form-check-label" for="chkUser">
+                      Usuario Restringido
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div></div>
+            </div>
+          </form>
+        </div>
+        <div class="col-3" style="text-align: center;padding-top: 3%">
+          <div class="row">
+            <div class="col">
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <button type="button" class="btn btn-labeled btn-secondary">
+                    <span class="btn-label"
+                      ><img src="../../../assets/icons/bicolor/48x/Irirs enrolar 53_48px.png"/></span
+                    >Enrolar
+                  </button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <button type="button" class="btn btn-labeled btn-success">
+                    <span class="btn-label"
+                      ><img src="../../../assets/icons/bicolor/48x/Irirs verificar 55_48px.png"/></span
+                    >Verificar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <!--PANEL NUEVO,EDITAR,CANCEL-->
+    <div class="row" style="padding-top: 20px !important">
+      <div class="col-6">
+        <button type="button" class="btn btn-secondary" disabled="{{ botonNuevo }}" (click)="nuevoUsuario()">
+          NUEVO
+        </button>
+        <button type="button" class="btn btn-secondary" disabled="{{ botonModificar }}" (click)="editarUsuario()">
+          EDITAR
+        </button>
+        <button type="button" class="btn btn-danger" disabled="{{ botonEliminar }}" (click)="borrarUsuario()">
+          ELIMINAR
+        </button>
+      </div>
+      <div class="col-6" style="text-align: right">
+        <button type="submit" class="btn btn-secondary" disabled="{{ disabled }}" (click)="accionAceptar()">
+          ACEPTAR
+        </button>
+        <button type="button" class="btn btn-secondary" disabled="{{ disabled }}" (click)="accionCancelar()">
+          CANCELAR
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

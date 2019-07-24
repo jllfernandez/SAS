@@ -1,0 +1,331 @@
+<div class="container-fluid">
+  <div class="row">
+    <fieldset class="col-5">
+      <legend class="bg-secondary" translate>Localización</legend>
+      <form #localizacionForm="ngForm" id="localizacion">
+        <div class="form-group row">
+          <div class="col-3">
+            <input
+              #radio_identificacion
+              class="form-check-input"
+              type="radio"
+              name="localizacion"
+              id="identificacion"
+              (change)="selectRadio($event)"
+            />
+            <label class="form-check-label" for="identificacion">
+              Identificación
+            </label>
+          </div>
+          <div class="col-4">
+            <jqxComboBox
+              #select_identidad
+              [source]="documentos_source"
+              [theme]="'custom'"
+              [width]="'100%'"
+              (onSelect)="selectDocumento($event)"
+              id="select-identidad"
+            >
+            </jqxComboBox>
+          </div>
+          <div class="col-5">
+            <input
+              #identidad
+              type="text"
+              class="form-control"
+              name="localizacion"
+              id="codigoIdentificacion"
+              (focus)="entraCampoTexto($event.target.id)"
+              (blur)="recogeCampoTexto($event)"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-3">
+              <input
+                #radio_personal
+                class="form-check-input"
+                type="radio"
+                name="localizacion"
+                id="personal"
+                (change)="selectRadio($event)"
+              />
+              <label class="form-check-label" for="personal">
+                1º apellido
+              </label>
+            </div>
+            <div class="col-9">
+              <input
+                #apellido1
+                type="text"
+                name="apellido1"
+                class="form-control"
+                id="apellido1"
+                (focus)="entraCampoTexto($event.target.id)"
+                (blur)="recogeCampoTexto($event)"
+              />
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-3">
+              <label class="form-check-label" for="apellido2">2º apellido</label>
+            </div>
+            <div class="col-9">
+              <input
+                #apellido2
+                type="text"
+                name="apellido2"
+                class="form-control"
+                id="apellido2"
+                (focus)="entraCampoTexto($event.target.id)"
+                (blur)="recogeCampoTexto($event)"
+              />
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-3">
+              <label class="form-check-label" for="nombre">Nombre</label>
+            </div>
+            <div class="col-9">
+              <input
+                #nombre
+                type="text"
+                name="nombre"
+                class="form-control"
+                id="nombre"
+                (focus)="entraCampoTexto($event.target.id)"
+                (blur)="recogeCampoTexto($event)"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-3">
+            <input
+              #radio_expediente
+              class="form-check-input"
+              type="radio"
+              name="localizacion"
+              id="expediente"
+              (change)="selectRadio($event)"
+            />
+            <label class="form-check-label" for="expediente">
+              Expediente
+            </label>
+          </div>
+          <div class="col-9">
+            <input
+              #expediente
+              type="text"
+              name="expediente"
+              class="form-control"
+              id="codigoExpediente"
+              (focus)="entraCampoTexto($event.target.id)"
+              (blur)="recogeCampoTexto($event)"
+            />
+          </div>
+        </div>
+      </form>
+    </fieldset>
+    <div style="margin-left: 2%; margin-right: 2%;"></div>
+    <!--Filtro-->
+    <fieldset class="col-5">
+      <legend class="bg-secondary" translate>Filter</legend>
+      <form #filtradoForm="ngForm" id="filtrado">
+        <div class="form-group row">
+          <div class="col-3">
+            <label class="form-check-label">Tipo portador</label>
+          </div>
+          <div class="col-6">
+            <jqxComboBox
+              #select_tipo
+              [source]="tipoPortadores_source"
+              [theme]="'custom'"
+              [width]="'100%'"
+              (onSelect)="selectTipoPortador($event)"
+              id="select-tipo"
+            >
+            </jqxComboBox>
+          </div>
+          <div class="col-3">
+            <div class="form-check">
+              <label class="form-check-label">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="autorizador"
+                  (change)="checkAutorizador($event.target.checked)"
+                />
+                Autorizador
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-3">
+            <label class="form-check-label">Categoria</label>
+          </div>
+          <div class="col-6">
+            <jqxComboBox
+              #select_categoria
+              [source]="categorias_dataAdapter"
+              [displayMember]="'nombre'"
+              [valueMember]="'id'"
+              [theme]="'custom'"
+              [width]="'100%'"
+              [disabled]="true"
+              [autoComplete]="true"
+              (onSelect)="selectCategoria($event)"
+              id="categoria"
+            >
+            </jqxComboBox>
+          </div>
+          <div class="col-3">
+            <div class="form-check">
+              <label class="form-check-label">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  name=""
+                  id="baja"
+                  (change)="checkBaja($event.target.checked)"
+                />
+                En baja
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-3">
+            <label class="form-check-label">Identificador</label>
+          </div>
+          <div class="col-6">
+            <input #filtro_identificador type="text" class="form-control" id="filtro-identificador" />
+          </div>
+          <div class="col-3">
+            <button id="search" type="button" class="btn btn-secondary"><i class="fas fa-search"></i></button>
+            <button
+              id="erase-identificador"
+              type="button"
+              class="btn btn-secondary"
+              (click)="limpiarFiltros($event.target.id)"
+            >
+              X
+            </button>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-3">
+            <label class="form-check-label">Perfil</label>
+          </div>
+          <div class="col-6">
+            <jqxComboBox
+              #filtro_perfil
+              [source]="perfiles_dataAdapter"
+              [displayMember]="'descripcion'"
+              [valueMember]="'id'"
+              [theme]="'custom'"
+              [width]="'100%'"
+              [multiSelect]="true"
+              [autoComplete]="true"
+              id="select-perfil"
+            >
+            </jqxComboBox>
+          </div>
+          <div class="col-3">
+            <button id="search" type="button" class="btn btn-secondary"><i class="fas fa-search"></i></button>
+            <button
+              id="erase-perfil"
+              type="button"
+              class="btn btn-secondary"
+              (click)="limpiarFiltros($event.target.id)"
+            >
+              X
+            </button>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-3">
+            <label class="form-check-label">Zona</label>
+          </div>
+          <div class="col-6">
+            <input #filtro_zona type="text" class="form-control" id="filtro-zona" />
+          </div>
+          <div class="col-3">
+            <button id="search" type="button" class="btn btn-secondary"><i class="fas fa-search"></i></button>
+            <button id="erase-zona" type="button" class="btn btn-secondary" (click)="limpiarFiltros($event.target.id)">
+              X
+            </button>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-3">
+            <label class="form-check-label">Empresa</label>
+          </div>
+          <div class="col-6">
+            <jqxComboBox
+              #filtro_empresa
+              [source]="empresas_dataAdapter"
+              [displayMember]="'nombre'"
+              [valueMember]="'id'"
+              [width]="'100%'"
+              [autoComplete]="true"
+              id="select-empresa"
+            >
+            </jqxComboBox>
+          </div>
+          <div class="col-3">
+            <button id="search" type="button" class="btn btn-secondary"><i class="fas fa-search"></i></button>
+            <button
+              id="erase-empresa"
+              type="button"
+              class="btn btn-secondary"
+              (click)="limpiarFiltros($event.target.id)"
+            >
+              X
+            </button>
+          </div>
+        </div>
+      </form>
+    </fieldset>
+    <div class="col-1 column-group-button">
+      <button id="search" type="button" class="btn btn-secondary ci ci-search-bearer-32" (click)="busquedaFiltrada()">
+        BUSCAR
+      </button>
+      <button id="print" type="button" class="btn btn-secondary ci ci-printer-32" (click)="imprimeGrid()">
+        IMPRIMIR
+      </button>
+      <button id="new" type="button" class="btn btn-secondary ci ci-add-bearer-32" (click)="abreAltaPortador()">
+        ALTA
+      </button>
+      <button id="clear" type="button" class="btn btn-secondary ci ci-delete-32" (click)="limpiarTodo()">
+        LIMPIAR
+      </button>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-12" style="padding: 0;">
+      <jqxGrid
+        #busquedaPortadores
+        [width]="'100%'"
+        [source]="porta_dataAdapter"
+        [pageable]="true"
+        [editable]="false"
+        [sortable]="true"
+        [columns]="columns"
+        [columngroups]="columngroups"
+        [columnsresize]="true"
+        [selectionmode]="'singlerow'"
+        [localization]="localizationObject"
+        [disabled]="false"
+        [theme]="'custom'"
+        (onRowdoubleclick)="abreDetallePortador($event.args.row.bounddata)"
+      >
+      </jqxGrid>
+    </div>
+  </div>
+</div>

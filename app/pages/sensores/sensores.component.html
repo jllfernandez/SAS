@@ -1,0 +1,183 @@
+<div class="container">
+  <div class="container-fluid" style="margin-top: 15px;width: 100% !important">
+    <div class="row">
+      <fieldset class="col-12">
+        <jqxGrid
+          #myGrid
+          [theme]="'custom'"
+          [width]="'100%'"
+          [source]="dataAdapter"
+          [columns]="columns"
+          [columnsresize]="true"
+          [filterable]="true"
+          [sortable]="true"
+          [pageable]="true"
+          [localization]="localizationObject"
+          (onRowselect)="cellClick($event)"
+        >
+        </jqxGrid>
+      </fieldset>
+    </div>
+    <!-- PANEL CONTROL GRID -->
+    <div class="row">
+      <fieldset style="margin-top: 5px;width: 100% !important">
+        <fieldset style="margin-top:0px">
+          <div class="row">
+            <div class="col-10">
+              <form [formGroup]="filtro" (ngSubmit)="accionAceptar()">
+                <div class="form-row">
+                  <label for="ComboTipoSensor" class="col-sm-2 col-form-label">Tipo Sensor</label>
+                  <div class="form-group col-md-4">
+                    <jqxComboBox
+                      #ComboTipoSensor
+                      id="ComboTipoSensor"
+                      formControlName="tipoSensor"
+                      [source]="tsensor_dataAdapter"
+                      [displayMember]="'nombre'"
+                      [valueMember]="'nombre'"
+                      [theme]="'bootstrap'"
+                      [width]="'100%'"
+                      [height]="28"
+                    ></jqxComboBox>
+                  </div>
+                  <label for="ComboAsociacion" class="col-sm-2 col-form-label" translate>Tipo Asociacion</label>
+                  <div class="form-group col-md-4">
+                    <jqxComboBox
+                      #ComboAsociacion
+                      id="ComboAsociacion"
+                      formControlName="tipoAsociacion"
+                      [source]="tasoc_dataAdapter"
+                      [displayMember]="'nombre'"
+                      [valueMember]="'nombre'"
+                      [theme]="'bootstrap'"
+                      [width]="'100%'"
+                      [height]="28"
+                    ></jqxComboBox>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <label for="estado" class="col-sm-2 col-form-label" translate>Estado Sensor</label>
+                  <div class="form-group col-md-4">
+                    <jqxComboBox
+                      #ComboEstado
+                      id="estado"
+                      formControlName="estado"
+                      [source]="testsensor_dataAdapter"
+                      [displayMember]="'nombre'"
+                      [valueMember]="'nombre'"
+                      [theme]="'bootstrap'"
+                      [width]="'100%'"
+                      [height]="28"
+                    ></jqxComboBox>
+                  </div>
+                  <span for="txtDni" class="col-sm-2 col-form-label" translate>Num. Serie</span>
+                  <div class="form-group col-md-4">
+                    <input
+                      #NumSerie
+                      formControlName="numSerie"
+                      type="text"
+                      class="form-control"
+                      id="txtDni"
+                      aria-describedby="basic-addon1"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <label for="cmbEmpresa" class="col-sm-2 col-form-label" translate>Company</label>
+                  <div class="form-group-row col-md-4">
+                    <jqxComboBox
+                      #ComboEmpresa
+                      id="cmbEmpresa"
+                      formControlName="idEmpresa"
+                      [source]="empresas_dataAdapter"
+                      [displayMember]="'nombre'"
+                      [valueMember]="'id'"
+                      [theme]="'bootstrap'"
+                      [width]="'100%'"
+                      [height]="28"
+                    ></jqxComboBox>
+                  </div>
+                  <div class="col-md-3"></div>
+                </div>
+              </form>
+            </div>
+            <div class="col-2">
+              <div class="row">
+                <div class="col">
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <button type="submit" class="btn btn-labeled btn-secondary" (click)="filtrarSeleccion()">
+                        <span class="btn-label" translate
+                          ><img src="../../../assets/icons/bicolor/48x/Buscar sensor 20_48px.png"/></span
+                        ><label translate>Search</label>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <button type="button" class="btn btn-primary" (click)="clearFilter()">Limpiar Filtros</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <!--PANEL NUEVO,EDITAR,CANCEL-->
+        <div class="row" style="padding-top: 10px !important">
+          <div class="col-6">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              disabled="{{ botonNuevo }}"
+              (click)="nuevoSensor()"
+              translate
+            >
+              New
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              disabled="{{ botonModificar }}"
+              (click)="editarSensor()"
+              translate
+            >
+              Edit
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              disabled="{{ botonEliminar }}"
+              (click)="imprimirSeleccion()"
+              translate
+            >
+              Print
+            </button>
+          </div>
+          <div class="col-6" style="text-align: right">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              disabled="{{ disabled }}"
+              (click)="accionAceptar()"
+              translate
+            >
+              Accept
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              disabled="{{ disabled }}"
+              (click)="accionCancelar()"
+              translate
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>

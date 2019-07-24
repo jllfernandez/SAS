@@ -1,0 +1,105 @@
+<div class="container">
+  <div class="container-fluid" style="margin-top: 15px;width: 100% !important">
+    <div class="row">
+      <fieldset class="col-12">
+        <jqxGrid
+          #myGrid
+          [theme]="'custom'"
+          [width]="'100%'"
+          [source]="dataAdapter"
+          [columns]="columns"
+          [columnsresize]="true"
+          [sortable]="true"
+          [filterable]="true"
+          [localization]="localizationObject"
+          (onRowselect)="cellClick($event)"
+          [pageable]="true"
+        >
+        </jqxGrid>
+      </fieldset>
+    </div>
+  </div>
+  <!-- FILTRO -->
+  <div class="container-fluid">
+    <fieldset class="row">
+      <legend translate>Categories</legend>
+      <div class="container-fluid">
+        <div class="md-form">
+          <!-- FILTRO NOMBRE CATEGORIA -->
+          <div class="row">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-1">
+                  <label for="form6">Nombre</label>
+                </div>
+                <div class="col-11">
+                  <input
+                    #txtNombreCategoria
+                    [(ngModel)]="nombreFilter"
+                    class="form-control"
+                    type="text"
+                    name="nombre_filter"
+                    id="nombre_filter"
+                    placeholder="Nombre Categoria..."
+                  />
+                </div>
+                <div class="col-md-1"></div>
+              </div>
+            </div>
+          </div>
+          <!-- FILTRO NOMBRE DESCRIPCION -->
+          <div class="row">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-1">
+                  <label for="form6">Descripción</label>
+                </div>
+                <div class="col-11">
+                  <textarea
+                    #txtDescCategoria
+                    [(ngModel)]="descFilter"
+                    class="form-control"
+                    value=""
+                    type="text"
+                    name="desc_filter"
+                    id="desc_filter"
+                    rows="2"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+  <!--BOTONES INFERIORES -->
+  <div class="container-fluid">
+    <div class="row">
+      <fieldset class="col-12">
+        <div class="row">
+          <div class="col-6" style="display: inline-block;">
+            <button type="button" class="btn btn-secondary" (click)="nuevaCategoria()" disabled="{{ botonNuevo }}">
+              NUEVO
+            </button>
+            <button type="button" class="btn btn-secondary" (click)="editarCategoria()" disabled="{{ botonModificar }}">
+              EDITAR
+            </button>
+            <button type="button" class="btn btn-danger" (click)="borrarCategoria()" disabled="{{ botonEliminar }}">
+              ELIMINAR
+            </button>
+          </div>
+          <div class="col-6" style="display: inline-block;text-align: right">
+            <button type="button" class="btn btn-secondary" (click)="accionAceptar()" disabled="{{ disabled }}">
+              ACEPTAR
+            </button>
+            <button type="button" class="btn btn-secondary" (click)="accionCancelar()" disabled="{{ disabled }}">
+              CANCELAR
+            </button>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>
+<br />

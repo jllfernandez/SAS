@@ -1,0 +1,208 @@
+<div class="container">
+  <div class="container-fluid" style="margin-top: 15px;width: 100% !important">
+    <div class="row">
+      <fieldset class="col-12">
+        <jqxGrid
+          #myGrid
+          [theme]="'custom'"
+          [width]="'100%'"
+          [source]="dataAdapter"
+          [columns]="columns"
+          [columnsresize]="true"
+          [filterable]="true"
+          [sortable]="true"
+          [pageable]="true"
+          (onRowselect)="cellClick($event)"
+        >
+        </jqxGrid>
+        <!--[localization]="localizationObject"-->
+      </fieldset>
+    </div>
+    <!-- PANEL CONTROL GRID -->
+    <div class="row">
+      <fieldset style="margin-top: 15px;width: 100% !important">
+        <fieldset>
+          <div class="row">
+            <div class="col-12">
+              <form [formGroup]="filtro" (ngSubmit)="accionAceptar()">
+                <div class="form-row">
+                  <label for="nombre" class="col-sm-2 col-form-label" translate>nombre</label>
+                  <div class="form-group col-md-4">
+                    <input
+                      #nombre
+                      formControlName="nombre"
+                      type="text"
+                      class="form-control"
+                      id="nombre"
+                      aria-describedby="basic-addon1"
+                    />
+                  </div>
+                  <span for="pc" class="col-sm-2 col-form-label" translate>pc</span>
+                  <div class="form-group col-md-4">
+                    <input
+                      #pc
+                      formControlName="pc"
+                      type="text"
+                      class="form-control"
+                      id="pc"
+                      aria-describedby="basic-addon1"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <label for="estadoserver" class="col-sm-2 col-form-label" translate>serverstatus</label>
+                  <div class="form-group col-md-4">
+                    <jqxComboBox
+                      #ComboEstado
+                      id="estadoserver"
+                      formControlName="estadoserver"
+                      [source]="estados_dataAdapter"
+                      [displayMember]="'nombre'"
+                      [valueMember]="'id'"
+                      [theme]="'bootstrap'"
+                      [width]="'100%'"
+                      [height]="28"
+                    ></jqxComboBox>
+                  </div>
+                  <span for="analizerport" class="col-sm-2 col-form-label" translate>analizerport</span>
+                  <div class="form-group col-md-4">
+                    <input
+                      #analizerport
+                      formControlName="analizerport"
+                      type="text"
+                      class="form-control"
+                      id="analizerport"
+                      aria-describedby="basic-addon1"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <label for="analizer" class="col-sm-2 col-form-label" translate>analizer</label>
+                  <div class="form-group col-md-4">
+                    <jqxComboBox
+                      #ComboAnalizador
+                      id="analizer"
+                      formControlName="analizer"
+                      [source]="analizador_dataAdapter"
+                      [displayMember]="'nombre'"
+                      [valueMember]="'idanaliza'"
+                      [theme]="'bootstrap'"
+                      [width]="'100%'"
+                      [height]="28"
+                    ></jqxComboBox>
+                  </div>
+                  <span for="consoleport" class="col-sm-2 col-form-label" translate>consoleport</span>
+                  <div class="form-group col-md-4">
+                    <input
+                      #consoleport
+                      formControlName="consoleport"
+                      type="text"
+                      class="form-control"
+                      id="consoleport"
+                      aria-describedby="basic-addon1"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <label for="adminport" class="col-sm-2 col-form-label" translate>adminport</label>
+                  <div class="form-group col-md-4">
+                    <input
+                      #adminport
+                      formControlName="adminport"
+                      type="text"
+                      class="form-control"
+                      id="adminport"
+                      aria-describedby="basic-addon1"
+                    />
+                  </div>
+                  <span for="txtDni" class="col-sm-2 col-form-label" translate>srvport</span>
+                  <div class="form-group col-md-4">
+                    <input
+                      #srvport
+                      formControlName="srvport"
+                      type="text"
+                      class="form-control"
+                      id="srvport"
+                      aria-describedby="basic-addon1"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <label for="analizerportevents" class="col-sm-2 col-form-label" translate>analizerportevents</label>
+                  <div class="form-group col-md-4">
+                    <input
+                      #analizerportevents
+                      formControlName="analizerportevents"
+                      type="text"
+                      class="form-control"
+                      id="analizerportevents"
+                      aria-describedby="basic-addon1"
+                    />
+                  </div>
+                  <span for="countport" class="col-sm-2 col-form-label" translate>countport</span>
+                  <div class="form-group col-md-4">
+                    <input
+                      #countport
+                      formControlName="countport"
+                      type="text"
+                      class="form-control"
+                      id="countport"
+                      aria-describedby="basic-addon1"
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </fieldset>
+        <!--PANEL NUEVO,DETALLE,CANCEL-->
+        <div class="row" style="padding-top: 20px !important">
+          <div class="col-6">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              disabled="{{ botonNuevo }}"
+              (click)="nuevoEvento()"
+              translate
+            >
+              New
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              disabled="{{ botonModificar }}"
+              (click)="detailEvento()"
+              translate
+            >
+              detail
+            </button>
+          </div>
+          <div class="col-6" style="text-align: right">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              disabled="{{ disabled }}"
+              (click)="accionAceptar()"
+              translate
+            >
+              Accept
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              disabled="{{ disabled }}"
+              (click)="accionCancelar()"
+              translate
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>

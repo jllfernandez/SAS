@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="btn-group" role="group">
+            <button
+              *ngFor="let lb of leftButtons"
+              class="btn btn-primary btn-sm"
+              type="button"
+              (click)="buttonClicked(lb)"
+            >
+              {{ lb.label }}
+            </button>
+          </div>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <div class="btn-group" role="group">
+            <button
+              *ngFor="let rb of rightButtons"
+              class="btn btn-primary btn-sm"
+              type="button"
+              (click)="buttonClicked(rb)"
+            >
+              {{ rb.label }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

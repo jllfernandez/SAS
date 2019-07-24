@@ -1,0 +1,251 @@
+<nav class="header navbar navbar-expand-lg navbar-light bg-nav">
+  <a routerLink="/home">
+    <img src="../../../assets/img/shs-icon.png" alt="Shs consultores" title="Ir a inicio" />
+  </a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <!-- Altas -->
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          routerLink="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <span translate>Register</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: 250px !important;">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <ul class="nav flex-column">
+                  <li class="nav-item">
+                    <a class="nav-link active" routerLink="#" translate>Sensors</a>
+                  </li>
+                  <span class="dropdown-divider"></span>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/portadores" translate>Bearers</a>
+                  </li>
+                  <span class="dropdown-divider"></span>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="#" translate>Profiles</a>
+                  </li>
+                  <span class="dropdown-divider"></span>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="#" translate>ServerEvents</a>
+                  </li>
+                  <span class="dropdown-divider"></span>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="#" translate>ServerIris</a>
+                  </li>
+                  <span class="dropdown-divider"></span>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="#" translate>AnaliticsEvents</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <!-- Consulta -->
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          routerLink="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <span translate>Inquiry</span>
+        </a>
+        <div class="dropdown-menu divided" aria-labelledby="navbarDropdown">
+          <div class="container">
+            <div class="d-flex flex-row">
+              <div class="col-6 first-column">
+                <ul class="nav flex-column">
+                  <li class="nav-item">
+                    <a class="nav-link active" routerLink="/busqueda-portadores" translate>Bearers</a>
+                  </li>
+                  <span class="dropdown-divider"></span>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="#" translate>Cards</a>
+                  </li>
+                  <span class="dropdown-divider"></span>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="#" translate>CardsTake</a>
+                  </li>
+                </ul>
+              </div>
+              <!-- /.col-md-4  -->
+              <div class="col-6">
+                <ul class="nav flex-column">
+                  <li class="nav-item">
+                    <a class="nav-link active" routerLink="/zonasJerarquias" translate>Zones</a>
+                  </li>
+                  <span class="dropdown-divider"></span>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/categorias" translate>Categories</a>
+                  </li>
+                  <span class="dropdown-divider"></span>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/empresas" translate>Companies</a>
+                  </li>
+                  <span class="dropdown-divider"></span>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="#" translate>AlertsControl</a>
+                  </li>
+                  <span class="dropdown-divider"></span>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="#" translate>FollowConsole</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!--  /.container  -->
+        </div>
+      </li>
+      <!-- Herramientas -->
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          routerLink="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <span translate>Tools</span>
+        </a>
+      </li>
+      <!-- Mantenimiento -->
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          routerLink="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <span translate>Service</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: 200px !important;">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <ul class="nav flex-column">
+                  <li class="nav-item">
+                    <a class="nav-link active" routerLink="/zonasMantenimiento/1" translate
+                      ><span translate>Zones</span></a
+                    >
+                  </li>
+                  <span class="dropdown-divider"></span>
+                  <li class="nav-item">
+                    <a class="nav-link active" routerLink="/servidoresEventos" translate
+                      ><span translate>EventServers</span></a
+                    >
+                  </li>
+                  <span class="dropdown-divider"></span>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/perfiles-usuario" translate><span translate>Profiles</span></a>
+                  </li>
+
+                  <span class="dropdown-divider"></span>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/usuarios" routerLinkActive="active" translate>
+                      <span translate>Users</span></a
+                    >
+                  </li>
+                  <span class="dropdown-divider"></span>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/sensores" routerLinkActive="active" translate>
+                      <span translate>Sensors</span></a
+                    >
+                    <span class="dropdown-divider"></span>
+                  </li>
+                  <span class="dropdown-divider"></span>
+                  <li class="nav-item"></li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/analizador-eventos" routerLinkActive="active" translate>
+                      <span translate>EventsAnalizer</span></a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <!-- menu sesion -->
+    <div class="nav-item" ngbDropdown placement="bottom-right">
+      <a id="user-dropdown" class="nav-link" ngbDropdownToggle>
+        <i class="fas fa-user-circle"></i>
+      </a>
+      <div ngbDropdownMenu aria-labelledby="user-dropdown" dropleft style="width: 300px !important;">
+        <h6 class="dropdown-header">
+          <span translate>Logged in as</span> <b>{{ username }}</b>
+        </h6>
+        <span class="dropdown-divider"></span>
+        <button class="dropdown-item " (click)="logout()" translate>Logout</button>
+      </div>
+    </div>
+    <!-- Barra de busqueda -->
+    <form class="form-inline my-2 my-lg-0 ">
+      <input class="form-control mr-sm-2 " type="search " placeholder="Search " aria-label="Search " />
+      <button class="btn btn-outline-primary my-2 my-sm-0 " type="submit "><i class="fas fa-search "></i></button>
+    </form>
+  </div>
+</nav>
+
+<script>
+  $(document).ready(function() {
+    // executes when HTML-Document is loaded and DOM is ready
+
+    // breakpoint and up
+    $(window).resize(function() {
+      if ($(window).width() >= 980) {
+        // when you hover a toggle show its dropdown menu
+        $('.navbar .dropdown-toggle').hover(function() {
+          $(this)
+            .parent()
+            .toggleClass('show');
+          $(this)
+            .parent()
+            .find('.dropdown-menu')
+            .toggleClass('show');
+        });
+
+        // hide the menu when the mouse leaves the dropdown
+        $('.navbar .dropdown-menu').mouseleave(function() {
+          $(this).removeClass('show');
+        });
+
+        // do something here
+      }
+    });
+
+    // document ready
+  });
+</script>

@@ -1,0 +1,19 @@
+<nav class="navbar navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <a
+      class="nav-link"
+      *ngFor="let enlace of enlaces"
+      routerLink="{{ enlace.link }}"
+      (click)="hotlinkClick($event)"
+      (mouseover)="hotlinkHover($event)"
+      (mouseleave)="hotlinkOut($event)"
+    >
+      <figure class="hotlink">
+        <img id="{{ enlace.index }}" src="{{ enlace.logo }}" alt="{{ enlace.title }}" />
+        <figcaption class="image-tip">{{ enlace.title }}</figcaption>
+      </figure>
+    </a>
+  </div>
+  <!-- /.container -->
+</nav>
+<!--  end navbar -->

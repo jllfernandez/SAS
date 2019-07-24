@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="container-fluid">
+    <div class="col-12">
+      <jqxGrid
+        #gridCompanies
+        [width]="'100%'"
+        [source]="dataAdapter"
+        [pageable]="true"
+        [editable]="false"
+        [sortable]="true"
+        [filterable]="true"
+        [columns]="columns"
+        [columngroups]="columngroups"
+        [selectionmode]="'singlerow'"
+        [localization]="localizationObject"
+        [disabled]="false"
+        [theme]="'custom'"
+        (onRowclick)="rowclick($event)"
+      >
+      </jqxGrid>
+    </div>
+    <fieldset class="col-12">
+      <legend translate>Companies</legend>
+      <div class="row">
+        <div class="col-12">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">NOMBRE</span>
+            </div>
+            <input #empresasInput id="formEmpresa" type="text" class="form-control" disabled />
+          </div>
+        </div>
+      </div>
+      <fieldset class="col-12">
+        <div class="row">
+          <div #actionsGroup class="col-6" style="display: inline-block;">
+            <button id="new" type="button" class="btn btn-secondary" (click)="altaEmpresa()">NUEVO</button>
+            <button id="edit" type="button" class="btn btn-secondary" (click)="editarEmpresa()">EDITAR</button>
+            <button id="delete" type="button" class="btn btn-danger" (click)="borrarEmpresa()">ELIMINAR</button>
+            <span class="advice">Modo: {{ confirmMode | translate }}</span>
+          </div>
+
+          <div #optionsGroup class="col-6" style="display: inline-block; text-align: right" disabled>
+            <button id="confirm" type="button" class="btn btn-secondary" (click)="confirmar()">ACEPTAR</button>
+            <button id="cancel" type="button" class="btn btn-secondary" (click)="cancelar()">CANCELAR</button>
+          </div>
+        </div>
+      </fieldset>
+    </fieldset>
+  </div>
+</div>

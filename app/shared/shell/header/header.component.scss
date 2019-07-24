@@ -1,0 +1,96 @@
+@import "src/theme/theme-variables";
+
+/* adds some margin below the link sets  */
+
+.navbar .dropdown-menu div[class*="col"] {
+  margin-bottom: 1rem;
+}
+
+.navbar .dropdown-menu {
+  border: none;
+  background: linear-gradien($white, $gray-100);
+  width: 400px;
+}
+
+.dropdown-menu.divided,
+.dropdown-menu.divided div[class*="col"] {
+  padding: 0.5em 0 !important;
+  width: 500px !important;
+}
+
+.dropdown-divider {
+  border-color: $blue;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: $gray-600;
+}
+
+.navbar .dropdown-menu .container {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.dropdown-menu .first-column {
+  border-right: 1px solid $blue;
+}
+
+.navbar .dropdown-menu div[class*="col"] {
+  margin-bottom: 0;
+}
+
+.navbar .dropdown-menu .nav-link {
+  color: $blue !important;
+  padding: 0 1rem;
+}
+
+.navbar-nav .nav-link:active,
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+  font-weight: bold;
+}
+
+/* breakpoint and up - mega dropdown styles */
+
+@media screen and (min-width: 992px) {
+  /* remove the padding from the navbar so the dropdown hover state is not broken */
+  .navbar {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  /* remove the padding from the nav-item and add some margin to give some breathing room on hovers */
+  .navbar .nav-item {
+    padding: 0.2rem 0.2rem;
+  }
+  /* makes the dropdown full width
+.navbar .dropdown {position:static;}
+ */
+  .navbar .dropdown-menu {
+    width: 100%;
+    left: 0;
+    right: 0;
+    /*  height of nav-item  */
+    top: 45px;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s linear;
+  }
+  /* shows the dropdown menu on hover */
+  .navbar .dropdown:hover .dropdown-menu,
+  .navbar .dropdown .dropdown-menu:hover {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.3s linear;
+  }
+  .navbar .dropdown-menu {
+    font-size: 0.85em;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+  }
+  .nav-link.dropdown-toggle {
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="container-fluid" style="margin-top: 15px;width: 100% !important">
+    <div class="row">
+      <fieldset class="col-12">
+        <jqxGrid
+          #myGrid
+          [width]="'100%'"
+          [source]="dataAdapterTable"
+          [columns]="columns"
+          [columnsresize]="true"
+          (onRowselect)="cellClick($event)"
+        >
+        </jqxGrid>
+      </fieldset>
+    </div>
+  </div>
+</div>

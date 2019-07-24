@@ -1,0 +1,301 @@
+<!-- Tabs -->
+<section id="tabs">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <nav>
+          <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+            <a
+              class="nav-item nav-link active"
+              id="nav-personal-tab"
+              data-toggle="tab"
+              href="#nav-personal"
+              role="tab"
+              aria-controls="nav-personal"
+              aria-selected="true"
+              (click)="tabController($event)"
+              >Datos Propios</a
+            >
+            <a
+              class="nav-item nav-link"
+              id="nav-identificacion-tab"
+              data-toggle="tab"
+              href="#nav-identificacion"
+              role="tab"
+              aria-controls="nav-identificacion"
+              aria-selected="false"
+              (click)="tabController($event)"
+              >Datos Identificador</a
+            >
+            <a
+              class="nav-item nav-link"
+              id="nav-perfil-tab"
+              data-toggle="tab"
+              href="#nav-perfil"
+              role="tab"
+              aria-controls="nav-perfil"
+              aria-selected="false"
+              (click)="tabController($event)"
+              >Perfil</a
+            >
+            <a
+              class="nav-item nav-link"
+              id="nav-ubicacion-tab"
+              data-toggle="tab"
+              href="#nav-ubicacion"
+              role="tab"
+              aria-controls="nav-ubicacion"
+              aria-selected="false"
+              (click)="tabController($event)"
+              >Ubicación actual</a
+            >
+            <a
+              class="nav-item nav-link"
+              id="nav-visita-tab"
+              data-toggle="tab"
+              href="#nav-visita"
+              role="tab"
+              aria-controls="nav-visita"
+              aria-selected="false"
+              (click)="tabController($event)"
+              >Datos de Visita</a
+            >
+          </div>
+        </nav>
+        <form [formGroup]="portadorForm" (ngSubmit)="onSubmit()">
+          <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+            <!-- Tab datos propios -->
+            <div class="tab-pane fade show active" id="nav-personal" role="tabpanel" aria-labelledby="nav-personal-tab">
+              <div class="container-fluid">
+                <div class="row">
+                  <fieldset class="col-5 form-column">
+                    <label>
+                      Tipo portador:
+                      <input
+                        *ngIf="modoDetalle"
+                        class="form-control"
+                        type="text"
+                        formControlName="tipoPortador"
+                        [attr.disabled]="modoDetalle ? 'true' : null"
+                      />
+                      <jqxComboBox
+                        *ngIf="!modoDetalle"
+                        #select_portador
+                        class="form-control"
+                        formControlName="tipoPortador"
+                        [source]="tipoPortadores_dataAdapter"
+                        [displayMember]="'nombre'"
+                        [valueMember]="'id'"
+                      ></jqxComboBox>
+                    </label>
+
+                    <label>
+                      Tipo Identificación:
+                      <input
+                        class="form-control"
+                        type="text"
+                        formControlName="tipoIdentificacion"
+                        [attr.disabled]="modoDetalle ? 'true' : null"
+                      />
+                    </label>
+
+                    <label>
+                      Código:
+                      <input
+                        class="form-control"
+                        type="text"
+                        formControlName="codigoIdentificacion"
+                        value="{{ this.portador.codigoIdentificacion }}"
+                        [attr.disabled]="modoDetalle ? 'true' : null"
+                      />
+                    </label>
+
+                    <label>
+                      Pin:
+                      <input class="form-control" type="text" formControlName="pin" value="{{ this.portador.pin }}" />
+                    </label>
+
+                    <label>
+                      Categoria:
+                      <input
+                        class="form-control"
+                        type="text"
+                        formControlName="nombreCategoria"
+                        value="{{ this.portador.nombreCategoria }}"
+                      />
+                    </label>
+
+                    <label>
+                      Fecha Alta:
+                      <input
+                        class="form-control"
+                        type="text"
+                        formControlName="fechaAlta"
+                        value="{{ this.portador.fechaAlta }}"
+                        [attr.disabled]="modoDetalle ? 'true' : null"
+                      />
+                    </label>
+
+                    <label>
+                      Email:
+                      <input
+                        class="form-control"
+                        type="text"
+                        formControlName="email"
+                        value="{{ this.portador.email }}"
+                      />
+                    </label>
+
+                    <label>
+                      Sexo:
+                      <input class="form-control" type="text" formControlName="sexo" value="{{ this.portador.sexo }}" />
+                    </label>
+                  </fieldset>
+                  <fieldset class="col-5 form-column">
+                    <label>
+                      Nombre:
+                      <input
+                        class="form-control"
+                        type="text"
+                        formControlName="nombre"
+                        value="{{ this.portador.nombre }}"
+                      />
+                    </label>
+
+                    <label>
+                      Apellido 1º:
+                      <input
+                        class="form-control"
+                        type="text"
+                        formControlName="apellido1"
+                        value="{{ this.portador.apellido1 }}"
+                      />
+                    </label>
+
+                    <label>
+                      Apellido 2º:
+                      <input
+                        class="form-control"
+                        type="text"
+                        formControlName="apellido2"
+                        value="{{ this.portador.apellido2 }}"
+                      />
+                    </label>
+
+                    <label>
+                      Teléfono:
+                      <input
+                        class="form-control"
+                        type="text"
+                        formControlName="telefono"
+                        value="{{ this.portador.telefono }}"
+                      />
+                    </label>
+
+                    <label>
+                      Extensión
+                      <input
+                        class="form-control"
+                        type="text"
+                        formControlName="extension"
+                        value="{{ this.portador.extension }}"
+                      />
+                    </label>
+
+                    <label class="form-check-label">
+                      <input type="checkbox" formControlName="tindautoriz" />
+                      Autorizador
+                    </label>
+
+                    <label>
+                      Fecha Nacimiento:
+                      <input
+                        class="form-control"
+                        type="text"
+                        formControlName="fechaNacimiento"
+                        placeholder="  /  /  "
+                        value="{{ this.portador.fechaNacimiento }}"
+                      />
+                    </label>
+
+                    <label>
+                      Fecha Baja:
+                      <input
+                        class="form-control"
+                        type="text"
+                        formControlName="fechaBaja"
+                        value="{{ this.portador.fechaBaja }}"
+                        placeholder="  /  /  "
+                        [attr.disabled]="modoDetalle ? 'true' : null"
+                      />
+                    </label>
+
+                    <label>
+                      Empresa:
+                      <input
+                        class="form-control"
+                        type="text"
+                        formControlName="nombreEmpresa"
+                        value="{{ this.portador.nombreEmpresa }}"
+                      />
+                    </label>
+
+                    <label>
+                      Expediente:
+                      <input
+                        class="form-control"
+                        type="text"
+                        formControlName="codigoExpediente"
+                        value="{{ this.portador.codigoExpediente }}"
+                      />
+                    </label>
+                  </fieldset>
+                  <fieldset class="col-2 form-column">
+                    <input type="image" src="{{ urlPhoto }}" alt="Foto portador" width="240" height="240" />
+                    <div *ngIf="existePhoto" class="middle-container">
+                      <label class="switch">
+                        <input type="checkbox" [attr.checked]="muestraPhoto ? 'true' : null" (change)="mostrarFoto()" />
+                        <span class="slider round"></span>
+                      </label>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+            <!-- Tab datos identificacion -->
+            <div class="tab-pane fade" id="nav-identificacion" role="tabpanel" aria-labelledby="nav-identificacion-tab">
+              Datos identificación works
+            </div>
+            <!-- Tab datos perfil -->
+            <div class="tab-pane fade" id="nav-perfil" role="tabpanel" aria-labelledby="nav-perfil-tab">
+              Perfil works
+            </div>
+            <!-- Tab datos ubicacion -->
+            <div class="tab-pane fade" id="nav-ubicacion" role="tabpanel" aria-labelledby="nav-ubicacion-tab">
+              Ubicacion works
+            </div>
+            <!-- Tab datos visita -->
+            <div class="tab-pane fade" id="nav-visita" role="tabpanel" aria-labelledby="nav-visita-tab">
+              Visita works
+            </div>
+          </div>
+          <!-- Botonera acciones formulario -->
+          <div class="row">
+            <fieldset class="col-12">
+              <div #actionsGroup style="display: inline-block;">
+                <button id="confirm" type="submit" class="btn btn-secondary" [disabled]="!portadorForm.valid">
+                  ACEPTAR
+                </button>
+                <button id="cancel" type="button" class="btn btn-secondary">CANCELAR</button>
+                <button id="delete" type="button" class="btn btn-danger">BAJA</button>
+              </div>
+              <hr />
+              <p>Form Value: {{ portadorForm.value | json }}</p>
+              <p>Form Status: {{ portadorForm.status }}</p>
+            </fieldset>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

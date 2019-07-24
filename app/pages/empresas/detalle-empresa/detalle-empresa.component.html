@@ -1,0 +1,46 @@
+<div class="abrir-modal">
+  <div *ngIf="modalService.modal" class="modal" tabindex="-1" role="dialog" style="display: block;" bg-primary>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Detalle de {{ empresa.NOMBRE }}</h5>
+          <button (click)="closeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <form #validationForm="ngForm">
+              <div class="form-group row">
+                <label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
+                <div class="col-sm-6">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputNombre"
+                    [(ngModel)]="empresa.NOMBRE"
+                    name="NOMBRE"
+                    placeholder="NOMBRE"
+                    #NOMBRE="ngModel"
+                    required
+                  />
+                </div>
+              </div>
+            </form>
+            <div class="modal-footer">
+              <button (click)="aceptar()" type="button" class="btn btn-secondary" data-dismiss="modal">
+                Aceptar
+              </button>
+
+              <button (click)="almacenarCambios()" type="button" class="btn btn-secondary" data-dismiss="modal">
+                Aplicar
+              </button>
+
+              <button (click)="closeModal()" type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

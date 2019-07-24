@@ -1,0 +1,70 @@
+<div class="container" width="400" height="400" scrolling="auto">
+  <div class="container">
+    <div class="form-group row">
+      <div class="row">
+        <app-toolbar [enlaces]="links" class="hotlink-subtoolbar" (clickedOption)="onClickOption($event)">
+        </app-toolbar>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <fieldset class="col-md-12">
+        <div class="row">
+          <div class="col-sm-6">
+            <jqxTree
+              #tree
+              style="float: left;"
+              tabindex="1"
+              [width]="'100%'"
+              [height]="400"
+              [source]="records"
+              (onSelect)="processTreeSelect($event)"
+              (onExpand)="processTreeExpand($event)"
+              (onCollapse)="processTreeCollapse($event)"
+              (contextmenu)="contextmenuMenu($event)"
+            >
+            </jqxTree>
+            <jqxMenu
+              #menu
+              [theme]="'custom'"
+              [width]="150"
+              [height]="heightSubMenu"
+              [autoOpenPopup]="false"
+              [mode]="'popup'"
+              [source]="submenu"
+              (onItemclick)="processContextMenu($event)"
+            >
+            </jqxMenu>
+          </div>
+
+          <div class="col-sm-6">
+            <jqxTree
+              #tree2
+              style="float: left;"
+              tabindex="1"
+              [width]="'100%'"
+              [height]="400"
+              [source]="records2"
+              (onSelect)="processTreeSelect2($event)"
+              (onExpand)="processTreeExpand2($event)"
+              (onCollapse)="processTreeCollapse2($event)"
+              (contextmenu)="contextmenuMenu2($event)"
+            >
+            </jqxTree>
+            <jqxMenu
+              #menu2
+              [theme]="'custom'"
+              [width]="150"
+              [height]="heightSubMenu2"
+              [autoOpenPopup]="false"
+              [mode]="'popup'"
+              [source]="submenu2"
+              (onItemclick)="processContextMenu2($event)"
+            >
+            </jqxMenu>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>
