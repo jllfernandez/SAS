@@ -1,0 +1,13 @@
+NODE.js 
+Simplemente descargue el Instalador para Windows directamente desde el sitio web de nodejs.org.
+
+npm install -g @angular/cli
+
+ng new proyecto
+
+cd proyecto
+
+npm install --save @angular/material @angular/cdk @angular/animations
+
+ng b
+ng add -g rxjs
